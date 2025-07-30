@@ -1,0 +1,94 @@
+every 1 tick:
+    loop all players:
+        if loop-player's time played is smaller than 1 minutes:
+            set {_text} to "0 Minuten"
+        else:
+            set {_text} to translatescor("%time played of loop-player%")  
+        set title of loop-player's scoreboard to "<#ffd2b4>» %{logo}% <#ffb0ad>« "
+        set line 3 of loop-player's scoreboard to "&f <#00A2FF>ꜱ<#00B9F5>ᴘ<#00D1EB>ɪ<#00E8E0>ᴇ<#00FFD6>ʟ<#00FFAD>ᴢ<#00FF83>ᴇ<#00FF83>ɪ<#00FF83>ᴛ <#9cf2c9>» %{_text}%"
+        set line 2 of loop-player's scoreboard to "&f"
+        set line 5 of loop-player's scoreboard to " <#00A2FF>ꜱ<#00C1F1>ᴘ<#00E0E4>ɪ<#00FFD6>ᴇ<#00FFAD>ʟ<#00FF83>ᴇ<#00FF83>ʀ <#9cf2c9>» <#54e152>%size of all players%"
+        set line 6 of loop-player's scoreboard to "&f" 
+        set line 7 of loop-player's scoreboard to "  <#FFC300>ᴄ<#FEE100>ᴏ<#FCFF00>ɪ<#BBFC00>ɴ<#BBFC00>ꜱ <#e3faa3>» <#FFC300>%{coins::%loop-player's uuid%} ? 0%&r"
+        set line 8 of loop-player's scoreboard to "&f <#54F4D4>ᴄ<#4BE2DA>ʀ<#43CFE0>ʏ<#3ABDE6>ꜱ<#32AAED>ᴛ<#2998F3>ᴀ<#2185F9>ʟ<#1873FF>ꜱ <#8dbaff>» <#4BE2DA>%{crystals::%loop-player's uuid%} ? 0%&f"
+        set line 9 of loop-player's scoreboard to "&f"
+        set line 10 of loop-player's scoreboard to " <#FF9650>ᴅ<#FF874D>ɪ<#FF7849>ꜱ<#FF6946>ᴄ<#FF5942>ᴏ<#FF4A3F>ʀ<#FF3B3B>ᴅ <#f98b8b>» <#FF3B3B>/ᴅᴄʀᴍ"
+        set line 11 of loop-player's scoreboard to "................................................................"
+
+function translatescor(t: text):: text:
+	set {_diff} to {_t}
+	replace all "seconds" with "Sekunden" in {_diff}
+	replace all "second" with "Sekunde" in {_diff}
+	replace all "minutes" with "Minuten" in {_diff}
+	replace all "minute" with "Minute" in {_diff}
+	replace all "hours" with "Stunden" in {_diff}
+	replace all "hour" with "Stunde" in {_diff}
+	replace all "days" with "Tagen" in {_diff}
+	replace all "day" with "Tag" in {_diff}
+	replace all "week" with "Woche" in {_diff}
+	replace all "weeks" with "Wochen" in {_diff}
+	replace all "and" with "&" in {_diff}
+	if {_diff} contains "Woche" or "Woche":
+		set {_parts::*} to {_diff} split at "Woche"
+		set {_res} to "%{_parts::1}%Woche"
+	else if {_diff} contains "Stunde":
+		set {_parts::*} to {_diff} split at "Stunde"
+		set {_res} to "%{_parts::1}%Stunde"
+	else if {_diff} contains "Minute":
+		set {_parts::*} to {_diff} split at "Minute"
+		set {_res} to "%{_parts::1}%Minute"
+	else if {_diff} contains "Minute":
+		set {_parts::*} to {_diff} split at "Sekunde"
+		set {_res} to "%{_parts::1}%Sekunde"
+	else if {_diff} contains "Sekunde" or "Sekunde":
+		set {_parts::*} to {_diff} split at "Sekunde"
+		set {_res} to "0 Minuten"
+	else:
+		set {_res} to {_diff}
+		
+	return {_res}
+every 2 second:
+  set {space} to " "
+  wait 1 second 
+  set {space} to ""
+   
+#every 1 tick:
+  #set the realm display name to "<#ffd2b4>»%{space} ? ""% %{logo2}% %{space} ? ""%<#ffb0ad>«"
+function Logo():
+  set {logo} to "<#F5814D>&lI<#F48E54>&ld<#F5814D>&le<#F67447>&le<#F86740>&ln<#F95A39>&lG<#FA4C33>&la<#FB3F2C>&lm<#FD3225>&le<#FE251F>&ls"
+  wait 2 tick
+  set {logo} to "<#F67447>&lI<#F5814D>&ld<#F48E54>&le<#F5814D>&le<#F67447>&ln<#F86740>&lG<#F95A39>&la<#FA4C33>&lm<#FB3F2C>&le<#FD3225>&ls"
+  wait 2 tick
+  set {logo} to "<#F86740>&lI<#F67447>&ld<#F5814D>&le<#F48E54>&le<#F5814D>&ln<#F67447>&lG<#F86740>&la<#F95A39>&lm<#FA4C33>&le<#FB3F2C>&ls"
+  wait 2 tick
+  set {logo} to "<#F95A39>&lI<#F86740>&ld<#F67447>&le<#F5814D>&le<#F48E54>&ln<#F5814D>&lG<#F67447>&la<#F86740>&lm<#F95A39>&le<#FA4C33>&ls"
+  wait 2 tick
+  set {logo} to "<#FA4C33>&lI<#F95A39>&ld<#F86740>&le<#F67447>&le<#F5814D>&ln<#F48E54>&lG<#F5814D>&la<#F67447>&lm<#F86740>&le<#F95A39>&ls"
+  wait 2 tick
+  set {logo} to "<#FB3F2C>&lI<#FA4C33>&ld<#F95A39>&le<#F86740>&le<#F67447>&ln<#F5814D>&lG<#F48E54>&la<#F5814D>&lm<#F67447>&le<#F86740>&ls"
+  wait 2 tick
+  set {logo} to "<#FD3225>&lI<#FB3F2C>&ld<#FA4C33>&le<#F95A39>&le<#F86740>&ln<#F67447>&lG<#F5814D>&la<#F48E54>&lm<#F5814D>&le<#F67447>&ls"
+  wait 2 tick
+  set {logo} to "<#FE251F>&lI<#FD3225>&ld<#FB3F2C>&le<#FA4C33>&le<#F95A39>&ln<#F86740>&lG<#F67447>&la<#F5814D>&lm<#F48E54>&le<#F5814D>&ls"
+  wait 2 tick
+  set {logo} to "<#FF1818>&lI<#FE251F>&ld<#FD3225>&le<#FB3F2C>&le<#FA4C33>&ln<#F95A39>&lG<#F86740>&la<#F67447>&lm<#F5814D>&le<#F48E54>&ls"
+  wait 2 tick
+  set {logo} to "<#FE251F>&lI<#FF1818>&ld<#FE251F>&le<#FD3225>&le<#FB3F2C>&ln<#FA4C33>&lG<#F95A39>&la<#F86740>&lm<#F67447>&le<#F5814D>&ls"
+  wait 2 tick
+  set {logo} to "<#FD3225>&lI<#FE251F>&ld<#FF1818>&le<#FE251F>&le<#FD3225>&ln<#FB3F2C>&lG<#FA4C33>&la<#F95A39>&lm<#F86740>&le<#F67447>&ls"
+  wait 2 tick
+  set {logo} to "<#FB3F2C>&lI<#FD3225>&ld<#FE251F>&le<#FF1818>&le<#FE251F>&ln<#FD3225>&lG<#FB3F2C>&la<#FA4C33>&lm<#F95A39>&le<#F86740>&ls"
+  wait 2 tick
+  set {logo} to "<#FA4C33>&lI<#FB3F2C>&ld<#FD3225>&le<#FE251F>&le<#FF1818>&ln<#FE251F>&lG<#FD3225>&la<#FB3F2C>&lm<#FA4C33>&le<#F95A39>&ls"
+  wait 2 tick
+  set {logo} to "<#F95A39>&lI<#FA4C33>&ld<#FB3F2C>&le<#FD3225>&le<#FE251F>&ln<#FF1818>&lG<#FE251F>&la<#FD3225>&lm<#FB3F2C>&le<#FA4C33>&ls"
+  wait 2 tick
+  set {logo} to "<#F86740>&lI<#F95A39>&ld<#FA4C33>&le<#FB3F2C>&le<#FD3225>&ln<#FE251F>&lG<#FF1818>&la<#FE251F>&lm<#FD3225>&le<#FB3F2C>&ls"
+  wait 2 tick
+  set {logo} to "<#F67447>&lI<#F86740>&ld<#F95A39>&le<#FA4C33>&le<#FB3F2C>&ln<#FD3225>&lG<#FE251F>&la<#FF1818>&lm<#FE251F>&le<#FD3225>&ls"
+  wait 2 tick
+  set {logo} to "<#F5814D>&lI<#F67447>&ld<#F86740>&le<#F95A39>&le<#FA4C33>&ln<#FB3F2C>&lG<#FD3225>&la<#FE251F>&lm<#FF1818>&le<#FE251F>&ls"
+  wait 2 tick
+  set {logo} to "<#F48E54>&lI<#F5814D>&ld<#F67447>&le<#F86740>&le<#F95A39>&ln<#FA4C33>&lG<#FB3F2C>&la<#FD3225>&lm<#FE251F>&le<#FF1818>&ls"
+  wait 2 tick
+  Logo()
